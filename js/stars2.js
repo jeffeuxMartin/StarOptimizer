@@ -128,7 +128,7 @@ async function optimalStars(ft, stars, levelExtraExponents){
     }
     
     if(footer === null){
-        footer = "]";    
+        footer = ", CharacterEncoding -> "Unicode"]";    
     }
     
     let date2 = new Date();
