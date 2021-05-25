@@ -43,14 +43,14 @@ calcoptBLPWrapper[in___] :=
                     Block[{time, eval, $Messages, Print = myprint},
                         MemoryConstrained[
                             TimeConstrained[
-                                Print["输入：", ""[in]];
+                                Print["Inputs: ", ""[in]];
                                 eval = EvaluationData[Catch[calcoptBLP[in]]];
-                                Print["计算用时：", eval["Timing"]];
+                                Print["Total CPU time: ", eval["Timing"]];
                                 If[eval["Success"],
                                     eval["Result"]
                                     ,
-                                    Print["发生错误"];
-                                    Print["请在 GitHub 上联系作者，并附加以下信息"];
+                                    Print["Something went really wrong."];
+                                    Print["Please report your input and the following error(s) to Eaux Tacous#1021"];
                                     Print /@ eval["Messages"];
                                 ],
                                 10,
@@ -74,7 +74,7 @@ calcoptBLPWrapper[in___] :=
 
 
 calcoptBLP[___] :=
-    Throw[Print @ Style["输入无效", Hue[{0, .8, .9}]]];
+    Throw[Print @ Style["Invalid Input", Hue[{0, .8, .9}]]];
 
 
 calcoptBLP[llf_, initstars:Except[_Integer]?NumericQ, opt_.] :=
@@ -224,29 +224,29 @@ calcoptBLP[llf_?(NumericQ @ # && 10 <= # <= 1*^6&), initstars_Integer?(0 <= # <=
         totpow = Total[initpows + finpows];
         pows = (initpows + finpows) / totpow;
         powsd = finpows / totpow;
-        Print["使用星星数量：", Total @ fincosts];
-        Print["剩余星星数量：", initstars - Total @ fincosts];
+        Print["stars used: ", Total @ fincosts];
+        Print["stars left: ", initstars - Total @ fincosts];
         grid = {
             symbTable, NumberForm[#, Infinity, NumberSigns -> {"-", "+"}]& /@ finlevs, fincosts, vars, finlevs + vars, PercentForm[#, {Infinity, 4}]& /@ pows, Table[
                 Which[
                     finlevs[[i]] == 0,
-                        "无"
+                        "none"
                     ,
                     powsd[[i]] >= 0.01,
-                        "最高"
+                        "top"
                     ,
                     powsd[[i]] >= 0.001,
-                        "高"
+                        "high"
                     ,
                     powsd[[i]] >= 0.0001,
-                        "中"
+                        "medium"
                     ,
                     True,
-                        "低"
+                        "low"
                 ], {i, len}
             ]
         } // Transpose;
-        grid = Prepend[grid, {"变量", "购买数量", "星星数量", "购买前等级", "购买后等级", "贡献度", "优先级"}];
+        grid = Prepend[grid, {"variable", "\[CapitalDelta] level", "stars used", "level before", "level after", "power after", "priority"}];
         Print[Grid[
             grid, Frame -> All, FrameStyle -> Thin, ItemStyle -> {
                 Automatic, Switch[Last @ #,
