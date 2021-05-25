@@ -54,8 +54,9 @@
     <p id="upgrade-error" class="stars-error text-color" style="display: none">错误：归一等级无效</p>
     <p id="request-error" class="stars-error text-color" style="display: none">发生错误，请在 GitHub 上联系作者。</p>
     <div id="loader" class="loader" style="display: none"></div>
-    <div id="result">
-	<h3 class="text-color-medium">结果说明（请在计算完成后阅读！）</h3>
+    <div id="result"></div>
+    <div id="result-info">
+    <h3 class="text-color-medium">结果说明（请在计算完成后阅读！）</h3>
     <p class="stars-par text-color">variable: 变量名称</p>
     <p class="stars-par text-color">Δ Level：该变量需要的星星加成等级</p>
     <p class="stars-par text-color">stars used: 购买该变量对应加成等级需要的星星数量</p>
@@ -63,7 +64,7 @@
     <p class="stars-par text-color">levels after: 购买星星加成后，该变量的等级</p>
     <p class="stars-par text-color">power after: 购买星星加成后各变量对所有升级的贡献比例</p>
     <p class="stars-par text-color">priority: 该变量的优先级</p>
-  </div>
+    </div>
 </div>
 
 <script src="js/script.js"></script>
@@ -88,6 +89,7 @@ async function distribute() {
         upgradeLevel = "Automatic";
     
     setVisibility("result", false);
+    setVisibility("result-info", false);
     setVisibility("request-error", false);
     setVisibility("ft-error", !isFtValid);
     setVisibility("stars-error", !isStarsValid);
@@ -102,6 +104,7 @@ async function distribute() {
             let image = await optimalStars(ft, stars, upgradeLevel);
             _("result").innerHTML = "<img class=\"stars-result-image\" src=\"" + image + "\">";
             setVisibility("result", true);
+	    setVisibility("result-info", true);
         } catch {
             setVisibility("request-error", true);
         }
