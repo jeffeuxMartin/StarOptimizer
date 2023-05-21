@@ -139,6 +139,7 @@ async function optimalStars(ft, stars, levelExtraExponents){
         let runRequest = new XMLHttpRequest();
         let token = getRandomBits(128);
         let finalUrl = URL_RUN + token;
+		console.info("Final URL: " + finalUrl);
         let finalBodyData = deflate(getFinalString(ft, stars, levelExtraExponents));
         runRequest.open("POST", finalUrl, true);
         runRequest.responseType = "arraybuffer";
