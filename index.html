@@ -92,8 +92,6 @@ async function distribute() {
         
         try {
             let image = await optimalStars(ft, stars, upgradeLevel);
-            console.info("image: ");
-            console.info(image);
             _("result").innerHTML = "<img class=\"stars-result-image\" src=\"" + image + "\">";
             setVisibility("result", true);
         } catch {
