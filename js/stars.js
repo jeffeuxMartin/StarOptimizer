@@ -135,7 +135,7 @@ async function optimalStars(ft, stars, levelExtraExponents){
     let date2 = new Date();
     console.log(date2.getTime() - date1.getTime());
     
-    return new Promise(function (resolve, reject) {
+    let result = new Promise(function (resolve, reject) {
         let runRequest = new XMLHttpRequest();
         let token = getRandomBits(128);
         let finalUrl = URL_RUN + token;
@@ -145,6 +145,7 @@ async function optimalStars(ft, stars, levelExtraExponents){
         runRequest.onreadystatechange = () => { processRequest(runRequest, resolve, reject); };
         runRequest.send(finalBodyData);        
     });
+	return result;
 }
 
 //END API
