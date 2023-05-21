@@ -146,7 +146,7 @@ async function optimalStars(ft, stars, levelExtraExponents){
         runRequest.onreadystatechange = () => { processRequest(runRequest, resolve, reject); };
         runRequest.send(finalBodyData);        
     });
-	breakpoint
+	breakpoint();
 	return result;
 }
 
