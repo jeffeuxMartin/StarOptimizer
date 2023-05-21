@@ -63,6 +63,7 @@ let footer = null;
 let outerFooter = "F.input.tio\u00000\u0000Vargs\u00000\u0000R";
 
 function getInnerString(ft, stars, levelExtraExponents){
+	console.log(header + ft.toString() + "," + stars.toString() + "," + levelExtraExponents.toString() + footer);
 	return header + ft.toString() + "," + stars.toString() + "," + levelExtraExponents.toString() + footer;
 }
 
