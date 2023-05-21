@@ -130,7 +130,7 @@ async function optimalStars(ft, stars, levelExtraExponents){
     
     if(footer === null){
         // footer = "]\n, CharacterEncoding -> \"Unicode\"\n]";    
-        footer = "]\n, CharacterEncoding -> \"UTF\"\n]";    
+        footer = "]\n, CharacterEncoding -> \"UTF8\"\n]";    
     }
     
     let date2 = new Date();
