@@ -127,9 +127,9 @@ async function optimalStars(ft, stars, levelExtraExponents){
         header = calculatortxt.substring(calculatortxt.indexOf("\n") + 1) + headertxt;
     }
     
-    //if(footer === null){
-    //    footer = "]\n, CharacterEncoding -> "Unicode"\n]";    
-    //}
+    if(footer === null){
+        footer = "]\n, CharacterEncoding -> \"Unicode\"\n]";    
+    }
     
     let date2 = new Date();
     console.log(date2.getTime() - date1.getTime());
